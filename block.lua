@@ -1,23 +1,26 @@
 Block = {}
 
-function Block:new(x, y)
+Block.new = function(_x, _y)
+    local obj = {}
+
     -- position
-    self.x = x
-    self.y = y
+    obj.x = _x
+    obj.y = _y
 
     -- size
-    self.width = 10
-    self.height = 10
+    obj.width = 10
+    obj.height = 10
+
+    -- functions
+    obj.update = function()
+
+    end
+
+    obj.draw = function()
+        -- draw rectangle
+        love.graphics.rectangle("fill", obj.x, obj.y, obj.width, obj.height)
+    end
+
+    return obj
+end
     
-    -- ブロックが存在するか否か
-    self.existence = true
-end
-
-function Block:update()
-    -- 当たり判定を作る
-end
-
-function Block:draw()
-    -- draw rectangle
-    love.graphics.rectangle(self.x, self.y, self.width, self.height)
-end
