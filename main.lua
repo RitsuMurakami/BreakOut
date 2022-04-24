@@ -2,6 +2,7 @@ function love.load()
     require "Stage"
     require "block"
     require "ball"
+    require "player"
 
     love.window.setMode(640, 480)
     blocka = Block.new(300, 300)

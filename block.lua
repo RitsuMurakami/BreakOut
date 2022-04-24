@@ -8,15 +8,16 @@ Block.new = function(_x, _y)
     obj.y = _y
 
     -- size
-    obj.width = 10
-    obj.height = 10
+    obj.width = 15
+    obj.height = 15
 
     -- functions
     obj.update = function()
+        -- 当たり判定
 
     end
 
-    obj.draw = function()
+    obj.draw = function()-- 描画用
         -- draw rectangle
         love.graphics.rectangle("fill", obj.x, obj.y, obj.width, obj.height)
     end
