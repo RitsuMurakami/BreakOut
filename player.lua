@@ -13,6 +13,15 @@ Player.new = function(_x, _y, _width, _height)
 
     -- functions
     obj.update = function()
+        -- keypressed
+        if love.keyboard.isDown("right") then
+            obj.x = obj.x + 6
+
+        elseif love.keyboard.isDown("left") then
+            obj.x = obj.x - 6
+        
+        end
+
         -- 当たり判定
 
     end
@@ -20,16 +29,6 @@ Player.new = function(_x, _y, _width, _height)
     obj.draw = function()-- 描画用
         -- draw rectangle
         love.graphics.rectangle("fill", obj.x, obj.y, obj.width, obj.height)
-    end
-
-    -- keypressed
-    obj.Keypressed = function(_Key)
-        if _Key == "right" then
-            obj.x = obj.x + 5
-
-        elseif _Key == "left" then
-            obj.x = obj.x - 5
-        end
     end
 
     return obj
