@@ -1,3 +1,5 @@
+
+
 function love.load()
     require "Stage"
     require "block"
@@ -5,8 +7,11 @@ function love.load()
     require "player"
 
     love.window.setMode(640, 480)
-    blocka = Block.new(300, 300)
-    
+
+    -- objects
+    --Player = player.new(230, 300, 32, 10)
+    ablock = Block.new(300, 300)
+    player = Player.new(300, 300, 32, 10)
 end
 
 function love.update()
@@ -14,6 +19,11 @@ function love.update()
 end
 
 function love.draw()
-    blocka.draw()
+    --Player.draw()
+    ablock.draw()
+    player.draw()
 end
 
+function love.keypressed(_Key) 
+    --Player.Keypressed(_Key)
+end
