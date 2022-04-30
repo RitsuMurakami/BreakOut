@@ -1,5 +1,3 @@
-
-
 function love.load()
     require "Stage"
     require "block"

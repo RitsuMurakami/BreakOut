@@ -7,9 +7,11 @@ Player.new = function(_x, _y, _width, _height)
     obj.x = _x
     obj.y = _y
 
-    -- size
+    -- sprite size
     obj.width = _width
     obj.height = _height
+
+    local window_width = love.graphics.getWidth()
 
     -- functions
     obj.update = function()
@@ -22,7 +24,12 @@ Player.new = function(_x, _y, _width, _height)
         
         end
 
-        -- 当たり判定
+        -- 壁判定
+        if obj.x > window_width - obj.width then
+            obj.x = obj.x - 6
+        elseif obj.x < 0 then
+            obj.x = obj.x + 6
+        end
 
     end
 
@@ -33,38 +40,3 @@ Player.new = function(_x, _y, _width, _height)
 
     return obj
 end
-
---[[
-Player.new = function (_x, _y, _width, _height)
-    local obj = {}
-
-    -- position
-    obj.x = _x
-    obj.y = _y
-
-    -- size
-    obj.width = _width
-    obj.height = _height
-
-    -- update
-    obj.update = function()
-        
-    end
-
-    -- draw
-    obj.draw = function()-- 描画用
-        -- draw rectangle
-        love.graphics.rectangle("fill", obj.x, obj.y, obj.width, obj.height)
-    end
-
-    -- keypressed
-    obj.Keypressed = function(_Key)
-        if _Key == "right" then
-            obj.x = obj.x + 5
-
-        elseif _Key == "left" then
-            obj.x = obj.x - 5
-        end
-    end
-end
-]]
