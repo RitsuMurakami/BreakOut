@@ -7,17 +7,21 @@ function love.load()
     love.window.setMode(640, 480)
 
     -- objects
-    --Player = player.new(230, 300, 32, 10)
-    ablock = Block.new(300, 300)
-    player = Player.new(300, 400, 32, 10)
+    player = Player.new(300, 400, 64, 10)
+    ball = Ball.new(300, 300, math.rad(-45), 5)
 end
 
 function love.update()
     player.update()
+    ball.update()
+
+    -- 当たり判定
+    
 end
 
 function love.draw()
-    --Player.draw()
-    ablock.draw()
     player.draw()
+    ball.draw()
+
+    ball.touch_player(player.x, player.y, player.width)
 end
