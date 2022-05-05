@@ -8,7 +8,7 @@ Ball.new = function(_x, _y, _rad, _radius)
     obj.y = _y
     obj.radius = _radius
     obj.rad = _rad
-    obj.speed = 10
+    obj.speed = 6
 
     -- vector
     obj.cosx = function() 
@@ -43,7 +43,7 @@ Ball.new = function(_x, _y, _rad, _radius)
         end
     end
 
-    -- 当たり判定
+    -- playerとの当たり判定
     obj.touch_player = function(_px, _py, _pwidth)
         -- player position and size
         local p = {}
@@ -58,13 +58,57 @@ Ball.new = function(_x, _y, _rad, _radius)
                 -- playerにあたったら
                 p.distanceFromBarCenter = (p.x + p.width / 2) - (obj.x + obj.radius / 2)
 
-                obj.rad = math.rad(-180 * (p.x + p.width - obj.x) / p.width)
+                obj.rad = 180 * (p.x + p.width - obj.x) / p.width
+                if obj.rad < 10 then
+                    obj.rad = 10
+                elseif obj.rad > 170 then
+                    obj.rad = 170
+                end
+
+                obj.rad = -math.rad(obj.rad)
 
                 -- 当たり判定を反映
                 obj.vx = obj.cosx()
                 obj.vy = obj.siny()
             end
         end
+    end
+
+    -- blockとの当たり判定
+    obj.touch_block = function(_bx, _by, _width, _height)
+        local b = {}
+        -- block
+        b.x = _bx
+        b.y = _by
+        b.width = _width
+        b.height = _height
+        b.touch = false
+
+        -- ball が　block と触れたら
+        if obj.x + obj.radius > b.x and obj.x + obj.radius < b.x + b.width then
+            if b.y < obj.y + obj.radius and obj.y + obj.radius < b.y + b.height then
+                -- ball と　blockの座標の傾きを取得
+                --local a = (obj.y - b.y) / (b.x + b.width - obj.x)
+                --[[
+                if obj.y < b.y + (b.height / 5) or obj.y > b.y + (b.height * 4 / 5) then
+                    obj.vy = -obj.vy
+                elseif obj.x < b.x + (b.width / 5) or obj.x > b.x + (b.width * 4 / 5) then
+                    obj.vx = -obj.vx
+                end]]
+                --[[
+                if obj.x < b.x + (b.width / 5) or obj.x > b.x + (b.width * 4 / 5) then
+                    obj.vx = -obj.vx
+                elseif obj.y < b.y + (b.height / 5) or obj.y > b.y + (b.height * 4 / 5) then
+                    obj.vy = -obj.vy
+                end]]
+                obj.vx = -obj.vx
+                obj.vy = -obj.vy
+                b.touch = true
+            end
+        end
+
+        -- ブロックにあたったかどうかを返す
+        return b.touch
     end
 
     -- draw

@@ -1,6 +1,6 @@
 Block = {}
 
-Block.new = function(_x, _y)
+Block.new = function(_x, _y, _width, _height)
     local obj = {}
 
     -- position
@@ -8,14 +8,11 @@ Block.new = function(_x, _y)
     obj.y = _y
 
     -- size
-    obj.width = 15
-    obj.height = 15
+    obj.width = _width
+    obj.height = _height
 
     -- functions
-    obj.update = function()
-        -- 当たり判定
 
-    end
 
     obj.draw = function()-- 描画用
         -- draw rectangle
